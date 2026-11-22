@@ -40,6 +40,14 @@ const info = async () => {
         const entradaEn = data2.flavor_text_entries.find(e => e.language.name == 'en');
         const pokemonDesc = entradaEn ? entradaEn.flavor_text.replace(/\u00ad\s*/g, '').replace(/\s+/g, ' ').trim() : null;
 
+        //Status base dos pokemons
+        const pokemonhp = data1.stats[0].base_stat;
+        const pokemonatk = data1.stats[1].base_stat;
+        const pokemondef = data1.stats[2].base_stat;
+        const pokemonsp_atk = data1.stats[3].base_stat;
+        const pokemonsp_def = data1.stats[4].base_stat;
+        const pokemonspeed = data1.stats[5].base_stat;
+
         const linha = [
             pokemonNumber,
             sql(pokemonName),
@@ -50,7 +58,13 @@ const info = async () => {
             sql(pokemonType2),
             sql(pokemonDesc),
             sql(pokemonHabitat),
-            sql(pokemonPreEvo)
+            sql(pokemonPreEvo),
+            pokemonhp,
+            pokemonatk,
+            pokemondef,
+            pokemonsp_atk,
+            pokemonsp_def,
+            pokemonspeed
         ].join(', ');
 
         console.log(`(${linha})${pkmon == 1025 ? ';' : ','}`);
