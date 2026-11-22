@@ -1,4 +1,4 @@
-INSERT INTO pokemons (numero_dex, nome, altura, peso, abilities, type1, type2, desc_dex, habi, pre_evo)
+INSERT INTO pokemons (numero_dex, nome, altura, peso, abilities, type1, type2, desc_dex, habi, pre_evo, hp, akt, def, sp_atk, sp_def, speed)
 VALUES
 (1, 'bulbasaur', 7, 69, 'overgrow, chlorophyll', 'grass', 'poison', 'A strange seed was planted on its back at birth. The plant sprouts and grows with this POKéMON.', 'grassland', NULL, 45, 49, 49, 65, 65, 45),
 (2, 'ivysaur', 10, 130, 'overgrow, chlorophyll', 'grass', 'poison', 'When the bulb on its back grows large, it appears to lose the ability to stand on its hind legs.', 'grassland', 'bulbasaur', 60, 62, 63, 80, 80, 60),
