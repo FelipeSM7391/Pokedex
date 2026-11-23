@@ -31,7 +31,10 @@ const info = async () => {
         const pokemonName = data2.name;
         const pokemonHeight = data1.height;
         const pokemonWeight = data1.weight;
-        const pokemonAbilities = data1.abilities.map(a => a.ability.name).join(', ');
+        const pokemonAbilities = data1.abilities.map(a => a.ability.name);
+        const pokemonAb1 = pokemonAbilities[0];
+        const pokemonAb2 = pokemonAbilities[1];
+        const pokemonAb3 = pokemonAbilities[2];
         const pokemonType1 = data1.types[0] ? data1.types[0].type.name : null;
         const pokemonType2 = data1.types[1] ? data1.types[1].type.name : null;
 
@@ -53,7 +56,9 @@ const info = async () => {
             sql(pokemonName),
             pokemonHeight,
             pokemonWeight,
-            sql(pokemonAbilities),
+            sql(pokemonAb1),
+            sql(pokemonAb2),
+            sql(pokemonAb3),
             sql(pokemonType1),
             sql(pokemonType2),
             sql(pokemonDesc),
