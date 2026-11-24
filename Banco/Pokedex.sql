@@ -2,29 +2,32 @@
 --DROP DATABASE IF EXISTS pokedex;
 --\c pokedex;
 
+DROP TABLE IF EXISTS habilidades_pokemons;
+DROP TABLE IF EXISTS types_pokemons;
 DROP TABLE IF EXISTS pokemons;
 DROP TABLE IF EXISTS habitats;
 DROP TABLE IF EXISTS types;
+DROP TABLE IF EXISTS habilidades;
 
-create table habitats(
+create table habitats (
     nome text primary key
 );
 
 create table types (
-    tipo text primary key
+    nome text primary key
 );
 
-create table pokemons(
+create table habilidades (
+    id serial primary key,
+    nome varchar(50) not null unique
+);
+
+create table pokemons (
     id serial primary key,
     numero_dex integer not null unique,
-    nome varchar(50),
-    altura numeric(4, 1) not null,
+    nome varchar(50) not null,
+    altura numeric(4,1) not null,
     peso numeric(5,1) not null,
-    ab1 VARCHAR(50) not null,
-    ab2 VARCHAR(50),
-    ab3 VARCHAR(50),
-    type1 text not null references types(tipo),
-    type2 text references types(tipo),
     desc_dex text not null,
     habitat text references habitats(nome), --infelizmente só tem habitat até o deoxys 386 :(
     pre_evo text,
@@ -34,4 +37,16 @@ create table pokemons(
     sp_atk integer not null,
     sp_def integer not null,
     speed integer not null
+);
+
+create table types_pokemons (
+    numero_dex integer not null references pokemons(numero_dex),
+    nome text not null references types(nome),
+    primary key (numero_dex, nome)
+);
+
+create table habilidades_pokemons (
+    numero_dex integer not null references pokemons(numero_dex),
+    habilidade_id integer not null references habilidades(id),
+    primary key (numero_dex, habilidade_id)
 );
