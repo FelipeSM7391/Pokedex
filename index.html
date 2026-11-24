@@ -1,60 +1,75 @@
-<!--
-https://www.youtube.com/watch?v=AZ1drCVTDgs
-https://www.youtube.com/watch?v=Bc09sITr6FE
--->
-
 <!DOCTYPE html>
-<html lang="en"><!--linguagem-->
-<head>              <!--caracter-->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <!--icone da pagina-->
-    <link rel="icon" href="./favicons/favicon-16asdasdx16.png">
-
-                                <!--linka com o css-->
-    <link rel="stylesheet" href="./css/style.css">
-
-    <script defer src="./js/script.js"></script>
-
-    <title>Pokédex_FSM</title>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="./favicons/favicon-16asdasdx16.png">
+  <link rel="stylesheet" href="./css/style.css">
+  <script type="module" defer src="./js/script.js"></script>
+  <script type="module" defer src="./js/Habitat.js"></script>
+  <title>Pokédex_FSM</title>
 </head>
 <body>
+  <main>
+    <!-- Aparelho: sprite + nome/número -->
+    <section class="rotom">
+      <img src="./images/pokedex_ofc.jpeg" alt="Rotom-dex" class="rotom_body">
 
-    <main>
-        <section class="rotom">
-            <img src="./images/pokedex_ofc.jpeg" alt="Rotom-dex" class="rotom_body">
+      <div class="screen" id="pokedex-screen">
+        <div class="sprite_stage">
+          <img src="./images/Pok-dex-DO-FelipeSM-15-04-2026.png" alt="Pokémon" class="pokemon_image">
+        </div>
 
-            <div class="screen">
-                <div class="sprite_stage">
-                    <img src="./images/Pok-dex-DO-FelipeSM-15-04-2026.png" alt="pokemon" class="pokemon_image">
-                </div>
+        <h1 class="pokemon_data">
+          <span class="pokemon_num">!!!</span> -
+          <span class="pokemon_name">Boas-vindas</span>
+        </h1>
+      </div>
+    </section>
 
-                <h1 class="pokemon_data">
-                    <span class="pokemon_num">!!!</span> -
-                    <span class="pokemon_name">Boas vindas</span>
-                </h1>
-            </div>
-        </section>
+    <!-- Busca e botões -->
+    <section class="panel">
+      <form class="form">
+        <label class="sr_only" for="search">Nome ou número do Pokémon</label>
+        <input id="search" type="search" class="input_search"
+          placeholder="Nome ou número do Pokémon" autocomplete="off" required>
+      </form>
 
-        <section class="panel">
-            <form class="form">
-                <label class="sr_only" for="search">Pokémon name or number</label>
-                <input
-                id="search"
-                type="search"
-                class="input_search"
-                placeholder="Name or Pokémon number"
-                autocomplete="off"
-                required
-                />
-            </form>
+      <div class="buttons">
+        <button class="button btn-prev" type="button" aria-label="Pokémon anterior">&lt;</button>
+        <button class="button btn-details" type="button" aria-label="Mostrar ou esconder detalhes"
+          aria-controls="pokedex-details" disabled>+</button>
+        <button class="button btn-next" type="button" aria-label="Próximo Pokémon">&gt;</button>
+      </div>
+      <p class="status_message" role="status" aria-live="polite"></p>
+    </section>
 
-            <div class="buttons">
-                <button class="button btn-prev">&lt; Prev </button>
-                <button class="button btn-next">Next &gt;</button>
-            </div>
-        </section>
+    <section class="details_view" id="pokedex-details" aria-live="polite">
+      <div class="details_heading">
+        <span class="details_number">Nº ---</span>
+        <h2 class="details_name">Pokémon</h2>
+      </div>
 
-    </main>
+      <div class="details_summary">
+        <span><small>Altura</small><strong class="pokemon_height">—</strong></span>
+        <span><small>Peso</small><strong class="pokemon_weight">—</strong></span>
+        <span><small>Habitat</small><strong class="pokemon_habitat">—</strong></span>
+        <span><small>Pré-evolução</small><strong class="pokemon_pre_evo">—</strong></span>
+        <span class="wide"><small>Tipo(s)</small><strong class="pokemon_types">—</strong></span>
+        <span class="wide"><small>Habilidade(s)</small><strong class="pokemon_abilities">—</strong></span>
+      </div>
+
+      <div class="details_stats">
+        <div><span>HP</span><strong class="pokemon_hp">—</strong></div>
+        <div><span>Ataque</span><strong class="pokemon_atk">—</strong></div>
+        <div><span>Defesa</span><strong class="pokemon_def">—</strong></div>
+        <div><span>Atq. esp.</span><strong class="pokemon_sp_atk">—</strong></div>
+        <div><span>Def. esp.</span><strong class="pokemon_sp_def">—</strong></div>
+        <div><span>Veloc.</span><strong class="pokemon_speed">—</strong></div>
+      </div>
+
+      <p class="pokemon_description">Descrição do Pokémon.</p>
+    </section>
+  </main>
 </body>
 </html>
