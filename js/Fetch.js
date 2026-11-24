@@ -1,4 +1,5 @@
-//Pega as informações da API "pokeAPI" online, e retorna elas no formato SQL para colocar no Insert
+//Gera o INSERT da tabela pokemons
+//Uso: node Fetch_pokemons.js > arquivo.sql
 const fetchPokemon1 = async (pokemon) => {
     const APIResponse1 = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
 
@@ -8,7 +9,6 @@ const fetchPokemon1 = async (pokemon) => {
     }
     throw new Error(`Pokémon ${pokemon}: erro ${APIResponse1.status}`);
 };
-
 const fetchPokemon2 = async (pokemon) => {
     const APIResponse2 = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokemon}`)
 
@@ -23,20 +23,16 @@ const fetchPokemon2 = async (pokemon) => {
 const sql = (valor) => (valor == null || valor == undefined) ? 'NULL' : `'${String(valor).replace(/'/g, "''")}'`;
 
 const info = async () => {
+    console.log('INSERT INTO pokemons (numero_dex, nome, altura, peso, desc_dex, habitat, pre_evo, hp, atk, def, sp_atk, sp_def, speed) VALUES');
+
     for (let pkmon = 1; pkmon <= 1025; pkmon++) {
         const data1 = await fetchPokemon1(pkmon);
         const data2 = await fetchPokemon2(pkmon);
 
         const pokemonNumber = data1.id;
         const pokemonName = data2.name;
-        const pokemonHeight = data1.height;
-        const pokemonWeight = data1.weight;
-        const pokemonAbilities = data1.abilities.map(a => a.ability.name);
-        const pokemonAb1 = pokemonAbilities[0];
-        const pokemonAb2 = pokemonAbilities[1];
-        const pokemonAb3 = pokemonAbilities[2];
-        const pokemonType1 = data1.types[0] ? data1.types[0].type.name : null;
-        const pokemonType2 = data1.types[1] ? data1.types[1].type.name : null;
+        const pokemonHeight = data1.height/10;
+        const pokemonWeight = data1.weight/10;
 
         const pokemonPreEvo = data2.evolves_from_species ? data2.evolves_from_species.name : null;
         const pokemonHabitat = data2.habitat ? data2.habitat.name : null;
@@ -56,11 +52,6 @@ const info = async () => {
             sql(pokemonName),
             pokemonHeight,
             pokemonWeight,
-            sql(pokemonAb1),
-            sql(pokemonAb2),
-            sql(pokemonAb3),
-            sql(pokemonType1),
-            sql(pokemonType2),
             sql(pokemonDesc),
             sql(pokemonHabitat),
             sql(pokemonPreEvo),
